@@ -5,3 +5,5 @@ This is where the Linux file contains good support for Arm64. Special support fo
 Author source: https://github.com/MDFGaming/ubuntu-in-termux
 
 And I will create other Linux files by me
+
+Usage read here: https://cloudburstmc.org/wiki/run-nukkit-on-android-without-root/
