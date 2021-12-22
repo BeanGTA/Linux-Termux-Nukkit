@@ -8,6 +8,7 @@ And I will create other Linux files by me
 
 Usage read here: https://cloudburstmc.org/wiki/nukkit-android/
 
+Ubuntu: Yes
 
 CentOS 7: Yes
 
