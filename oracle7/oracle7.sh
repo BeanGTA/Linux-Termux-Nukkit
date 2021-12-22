@@ -4,7 +4,7 @@ time1="$( date +"%r" )"
 
 install1 () {
 directory=oracle7-fs
-DEBIAN_VERSION=stable
+ORACLE_VERSION=7
 if [ -d "$directory" ];then
 first=1
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;227m[WARNING]:\e[0m \x1b[38;5;87m Skipping the download and the extraction\n"
@@ -35,7 +35,7 @@ exit 1
 
 esac
 
-wget https://www.dropbox.com/s/8jouu2v12ers2hx/oracle7.tar.xz -q -O oracle7.tar.xz 
+wget https://www.dropbox.com/s/s0k90wjm9xagimc/oraclelinux7.tar.xz -q -O oracle7.tar.xz 
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Download complete!\n"
 
 fi
@@ -111,7 +111,7 @@ printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Cleaning up please wait...\n"
 rm oracle7.tar.xz -rf
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Successfully cleaned up!\n"
-printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m The installation has been completed! You can now launch Debian with ./startoracle7.sh\n"
+printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m The installation has been completed! You can now launch CentOS with ./startoracle7.sh\n"
 printf "\e[0m"
 
 }
