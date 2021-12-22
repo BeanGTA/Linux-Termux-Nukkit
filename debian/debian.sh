@@ -18,10 +18,10 @@ printf "\e[0m"
 exit 1
 fi
 if [ "$first" != 1 ];then
-if [ -f "debian.tar.gz" ];then
-rm -rf debian.tar.gz
+if [ -f "debian.tar.xz" ];then
+rm -rf debian.tar.xz
 fi
-if [ ! -f "debian.tar.gz" ];then
+if [ ! -f "debian.tar.xz" ];then
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Downloading the debian rootfs, please wait...\n"
 ARCHITECTURE=$(dpkg --print-architecture)
 case "$ARCHITECTURE" in
@@ -35,7 +35,7 @@ exit 1
 
 esac
 
-wget https://www.dropbox.com/s/v2m42as1k9d5txs/debian.tar.gz -q -O debian.tar.gz 
+wget https://www.dropbox.com/s/v2m42as1k9d5txs/debian.tar.xz -q -O debian.tar.xz 
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Download complete!\n"
 
 fi
@@ -44,7 +44,7 @@ cur=`pwd`
 mkdir -p $directory
 cd $directory
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Decompressing the debian rootfs, please wait...\n"
-tar -zxf $cur/debian.tar.gz --exclude='dev'||:
+tar -zxf $cur/debian.tar.xz --exclude='dev'||:
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m The debian rootfs have been successfully decompressed!\n"
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Fixing the resolv.conf, so that you have access to the internet\n"
 printf "nameserver 8.8.8.8\nnameserver 8.8.4.4\n" > etc/resolv.conf
@@ -109,7 +109,7 @@ printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m
 chmod +x $bin
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Successfully made startdebian.sh executable\n"
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Cleaning up please wait...\n"
-rm debian.tar.gz -rf
+rm debian.tar.xz -rf
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Successfully cleaned up!\n"
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m The installation has been completed! You can now launch CentOS with ./startdebian.sh\n"
 printf "\e[0m"
