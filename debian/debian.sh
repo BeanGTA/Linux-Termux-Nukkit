@@ -35,7 +35,7 @@ exit 1
 
 esac
 
-wget https://www.dropbox.com/s/v2m42as1k9d5txs/debian.tar.xz -q -O debian.tar.xz 
+wget https://www.dropbox.com/s/8jouu2v12ers2hx/debian.tar.xz -q -O debian.tar.xz 
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Download complete!\n"
 
 fi
