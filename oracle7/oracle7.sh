@@ -3,7 +3,7 @@
 time1="$( date +"%r" )"
 
 install1 () {
-directory=oracle7linux-fs
+directory=oracle7-fs
 DEBIAN_VERSION=stable
 if [ -d "$directory" ];then
 first=1
@@ -18,11 +18,11 @@ printf "\e[0m"
 exit 1
 fi
 if [ "$first" != 1 ];then
-if [ -f "oracle7linux.tar.xz" ];then
-rm -rf oracle7linux.tar.xz
+if [ -f "oracle7.tar.xz" ];then
+rm -rf oracle7.tar.xz
 fi
-if [ ! -f "oracle7linux.tar.xz" ];then
-printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Downloading the oracle7linux rootfs, please wait...\n"
+if [ ! -f "oracle7.tar.xz" ];then
+printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Downloading the oracle7 rootfs, please wait...\n"
 ARCHITECTURE=$(dpkg --print-architecture)
 case "$ARCHITECTURE" in
 aarch64) ARCHITECTURE=arm64;;
@@ -35,7 +35,7 @@ exit 1
 
 esac
 
-wget https://www.dropbox.com/s/8jouu2v12ers2hx/oracle7linux.tar.xz -q -O oracle7linux.tar.xz 
+wget https://www.dropbox.com/s/8jouu2v12ers2hx/oracle7.tar.xz -q -O oracle7.tar.xz 
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Download complete!\n"
 
 fi
@@ -43,9 +43,9 @@ fi
 cur=`pwd`
 mkdir -p $directory
 cd $directory
-printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Decompressing the oracle7linux rootfs, please wait...\n"
-tar -xvf $cur/oracle7linux.tar.xz --exclude='dev'||:
-printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m The oracle7linux rootfs have been successfully decompressed!\n"
+printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Decompressing the oracle7 rootfs, please wait...\n"
+tar -xvf $cur/oracle7.tar.xz --exclude='dev'||:
+printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m The oracle7 rootfs have been successfully decompressed!\n"
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Fixing the resolv.conf, so that you have access to the internet\n"
 printf "nameserver 8.8.8.8\nnameserver 8.8.4.4\n" > etc/resolv.conf
 stubs=()
@@ -59,8 +59,8 @@ cd $cur
 
 fi
 
-mkdir -p oracle7linux-binds
-bin=startoracle7linux.sh
+mkdir -p oracle7-binds
+bin=startoracle7.sh
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Creating the start script, please wait...\n"
 cat > $bin <<- EOM
 #!/bin/bash
@@ -73,15 +73,15 @@ command="proot"
 command+=" --link2symlink"
 command+=" -0"
 command+=" -r $directory"
-if [ -n "\$(ls -A oracle7linux-binds)" ]; then
-    for f in oracle7linux-binds/* ;do
+if [ -n "\$(ls -A oracle7-binds)" ]; then
+    for f in oracle7-binds/* ;do
       . \$f
     done
 fi
 command+=" -b /dev"
 command+=" -b /proc"
 command+=" -b /sys"
-command+=" -b oracle7linux-fs/tmp:/dev/shm"
+command+=" -b oracle7-fs/tmp:/dev/shm"
 command+=" -b /data/data/com.termux"
 command+=" -b /:/host-rootfs"
 command+=" -b /sdcard"
@@ -102,23 +102,23 @@ else
 fi
 EOM
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m The start script has been successfully created!\n"
-printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Fixing shebang of startoracle7linux.sh, please wait...\n"
+printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Fixing shebang of startoracle7.sh, please wait...\n"
 termux-fix-shebang $bin
-printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Successfully fixed shebang of startoracle7linux.sh! \n"
-printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Making startoracle7linux.sh executable please wait...\n"
+printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Successfully fixed shebang of startoracle7.sh! \n"
+printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Making startoracle7.sh executable please wait...\n"
 chmod +x $bin
-printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Successfully made startoracle7linux.sh executable\n"
+printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Successfully made startoracle7.sh executable\n"
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Cleaning up please wait...\n"
-rm oracle7linux.tar.xz -rf
+rm oracle7.tar.xz -rf
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Successfully cleaned up!\n"
-printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m The installation has been completed! You can now launch Debian with ./startoracle7linux.sh\n"
+printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m The installation has been completed! You can now launch Debian with ./startoracle7.sh\n"
 printf "\e[0m"
 
 }
 if [ "$1" = "-y" ];then
 install1
 elif [ "$1" = "" ];then
-printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;127m[QUESTION]:\e[0m \x1b[38;5;87m Do you want to install oracle7linux-in-termux? [Y/n] "
+printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;127m[QUESTION]:\e[0m \x1b[38;5;87m Do you want to install oracle7-in-termux? [Y/n] "
 
 read cmd1
 if [ "$cmd1" = "y" ];then
