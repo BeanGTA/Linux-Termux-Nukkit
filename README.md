@@ -7,3 +7,20 @@ Author source: https://github.com/MFDGaming/ubuntu-in-termux
 And I will create other Linux files by me
 
 Usage read here: https://cloudburstmc.org/wiki/nukkit-android/
+
+
+CentOS 7: Yes
+
+Amazon: Yes
+
+Oracle 7.9: Yes
+
+Oracle 8: Yes
+
+Rocky 8: Yes
+
+Debian 11: Yes
+
+openSUSE Leap 15: (Not updated yet, please wait)
+
+Arch: (Not updated yet, please wait)
