@@ -8,6 +8,10 @@ And I will create other Linux files by me
 
 Usage read here: https://cloudburstmc.org/wiki/nukkit-android/
 
+Install VNC: https://cloudburstmc.org/wiki/vnc-and-idea-for-linux-termux/
+
+
+
 Ubuntu: Yes
 
 CentOS 7: Yes
