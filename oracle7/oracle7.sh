@@ -35,7 +35,7 @@ exit 1
 
 esac
 
-wget https://www.dropbox.com/s/s0k90wjm9xagimc/oraclelinux7.tar.xz -q -O oracle7.tar.xz 
+wget https://www.dropbox.com/s/8jouu2v12ers2hx/oracle7.tar.xz -q -O oracle7.tar.xz 
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Download complete!\n"
 
 fi
