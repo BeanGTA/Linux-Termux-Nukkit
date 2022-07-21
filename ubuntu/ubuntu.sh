@@ -35,7 +35,7 @@ exit 1
 
 esac
 
-wget http://cdimage.ubuntu.com/ubuntu-base/releases/focal/release/ubuntu-base-20.04.3-base-arm64.tar.gz -q -O ubuntu.tar.gz 
+wget http://cdimage.ubuntu.com/ubuntu-base/releases/jammy/release/ubuntu-base-22.04-base-arm64.tar.gz -q -O ubuntu.tar.gz 
 printf "\x1b[38;5;214m[${time1}]\e[0m \x1b[38;5;83m[Installer thread/INFO]:\e[0m \x1b[38;5;87m Download complete!\n"
 
 fi
